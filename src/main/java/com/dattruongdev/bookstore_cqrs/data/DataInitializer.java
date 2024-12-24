@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -148,22 +147,19 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
 
     private Dta readJson() throws IOException, ParseException {
         String path = new File("").getAbsolutePath();
-        URL url = new URL("https://www.googleapis.com/books/v1/volumes?q=flowers&orderBy=newest&key=AIzaSyA2VnF88iLMLW7DyZn_WnYBWB1JDK_XfOg");
-        InputStream is = url.openStream();
-        String jsonText = "";
+        InputStream is = this.getClass().getResourceAsStream("/data.json");
+        StringBuilder jsonText = new StringBuilder();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         String line = "";
         while ((line = br.readLine()) != null) {
-            jsonText += line + "\n";
+            jsonText.append(line).append("\n");
         }
         is.close();
         br.close();
 
-        Dta data = fromJSON(new TypeReference<Dta>() {
-        }, jsonText);
-
-        return data;
+        return fromJSON(new TypeReference<Dta>() {
+        }, jsonText.toString());
     }
 }
 
