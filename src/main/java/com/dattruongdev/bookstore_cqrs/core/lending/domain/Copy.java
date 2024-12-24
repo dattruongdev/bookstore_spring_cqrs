@@ -1,10 +1,7 @@
 package com.dattruongdev.bookstore_cqrs.core.lending.domain;
 
-import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Book;
-import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Isbn;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.Date;
 
@@ -12,7 +9,7 @@ import java.util.Date;
 public class Copy {
     @Id
     private String id;
-    private Isbn isbn;
+    private String isbn;
     private boolean available;
     private Date createdAt;
     private Date updatedAt;

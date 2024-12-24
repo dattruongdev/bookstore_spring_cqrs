@@ -1,4 +1,4 @@
-package com.dattruongdev.bookstore_cqrs.core.catalog.query;
+package com.dattruongdev.bookstore_cqrs.core.lending.query;
 
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.Borrow;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.BorrowRepository;

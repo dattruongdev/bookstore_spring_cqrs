@@ -1,0 +1,942 @@
+{
+  "kind": "books#volumes",
+  "totalItems": 995,
+  "items": [
+    {
+      "kind": "books#volume",
+      "id": "HlkhEQAAQBAJ",
+      "etag": "Pq+vSd74BA0",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/HlkhEQAAQBAJ",
+      "volumeInfo": {
+        "title": "The Secrets of Flowers",
+        "authors": [
+          "Sally Page"
+        ],
+        "publisher": "Blackstone Publishing",
+        "publishedDate": "2025-02-25",
+        "description": "From the author of the phenomenal internationally bestselling The Keeper of Stories, The Secrets of Flowers is a heartwarming novel about a grieving woman who rediscovers herself by uncovering the lost story of the girl who arranged flowers on the Titanic. The smallest treasures can hold the biggest mysteries ... One year after her husband’s death, Emma has become a wallflower, hiding among the brighter blooms in the florist where she works.g But when a colleague invites her to a talk on the Titanic, she begins a quest to uncover who arranged the flowers on board. As Emma discovers the lost story of the girl and the great ship, she realizes that flowers may unlock long-buried secrets in her own life ... Will she be able to unlock the mystery of the Titanic and heal her own heart too? Book discussion questions are available here: https://s3.us-west-2.amazonaws.com/www.blackstoneaudio.com/docs/The_Secret_of_Flowers_Discussion_Guide.pdf",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9798228297012"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 353,
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.2.2.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=HlkhEQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=HlkhEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=HlkhEQAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=1&source=gbs_api",
+        "infoLink": "http://books.google.com.vn/books?id=HlkhEQAAQBAJ&dq=flowers&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/The_Secrets_of_Flowers.html?hl=&id=HlkhEQAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true
+        },
+        "pdf": {
+          "isAvailable": true
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=HlkhEQAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "From the author of the phenomenal internationally bestselling The Keeper of Stories, The Secrets of Flowers is a heartwarming novel about a grieving woman who rediscovers herself by uncovering the lost story of the girl who arranged flowers ..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "o834EAAAQBAJ",
+      "etag": "/dhO1LPFEhU",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/o834EAAAQBAJ",
+      "volumeInfo": {
+        "title": "A Future in Blossom (A Year of Flowers Book #4)",
+        "authors": [
+          "Suzanne Woods Fisher"
+        ],
+        "publisher": "Baker Books",
+        "publishedDate": "2024-11-19",
+        "description": "Years after tragedy sent them separate ways, three women return to their hometown, finally ready to face each other and their beloved mentor, flower shop owner Rose Reid. As they unite to pull off an extraordinary wedding, amid the flurry of preparations they just may find their way to forgiveness.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781493439287"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1493439286"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 120,
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=o834EAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=o834EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=o834EAAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=2&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=o834EAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=o834EAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 186476,
+          "currencyCode": "VND"
+        },
+        "retailPrice": {
+          "amount": 139857,
+          "currencyCode": "VND"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=o834EAAAQBAJ&rdid=book-o834EAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 186476000000,
+              "currencyCode": "VND"
+            },
+            "retailPrice": {
+              "amountInMicros": 139857000000,
+              "currencyCode": "VND"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/A_Future_in_Blossom_A_Year_of_Flowers_Bo-sample-epub.acsm?id=o834EAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/A_Future_in_Blossom_A_Year_of_Flowers_Bo-sample-pdf.acsm?id=o834EAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=o834EAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Years after tragedy sent them separate ways, three women return to their hometown, finally ready to face each other and their beloved mentor, flower shop owner Rose Reid."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "0dD4EAAAQBAJ",
+      "etag": "dFRUsHN7Bv4",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/0dD4EAAAQBAJ",
+      "volumeInfo": {
+        "title": "A Year of Flowers",
+        "subtitle": "A 4-in-1 Novella Collection",
+        "authors": [
+          "Suzanne Woods Fisher"
+        ],
+        "publisher": "Baker Books",
+        "publishedDate": "2024-11-19",
+        "description": "In this collection of four heartfelt novellas, three former friends have found success in the floral industry, but happiness--and love--remain elusive. In An Apology in Bloom, wedding florist Jaime Harper is on a meteoric rise, working for an event company led by a successful and way-too-handsome boss. When a letter arrives from her past mentor with an offer too good to pass up, will she stay or head back to her hometown? In A Bouquet of Dreams, Claire Murphy has always dreamed of owning a flower shop, and when her employers hint at retirement, she believes her moment has arrived. But first she must confront her past--and the man who caused her to flee her hometown years ago. In A Field of Beauty, Tessa Anderson has found an acre of farmland to start her flower farm and forget the past. She's grateful for the help of two men--her boyfriend, Tyler, and a quiet soil specialist named Dawson. But as the farm finally starts to bloom, Tessa will discover something that challenges everything she's built. In A Future in Blossom, Jaime, Claire, and Tessa return to their hometown, finally ready to face each other and their beloved mentor, flower shop owner Rose Reid. As they unite to pull off an extraordinary wedding, amid the flurry of preparations they just may find their way to forgiveness.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781493447152"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1493447157"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 363,
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.2.2.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=0dD4EAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=0dD4EAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=0dD4EAAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=3&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=0dD4EAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=0dD4EAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 533261,
+          "currencyCode": "VND"
+        },
+        "retailPrice": {
+          "amount": 373283,
+          "currencyCode": "VND"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=0dD4EAAAQBAJ&rdid=book-0dD4EAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 533261000000,
+              "currencyCode": "VND"
+            },
+            "retailPrice": {
+              "amountInMicros": 373283000000,
+              "currencyCode": "VND"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/A_Year_of_Flowers-sample-epub.acsm?id=0dD4EAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/A_Year_of_Flowers-sample-pdf.acsm?id=0dD4EAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=0dD4EAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "In this collection of four heartfelt novellas, three former friends have found success in the floral industry, but happiness--and love--remain elusive."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "F9IsEQAAQBAJ",
+      "etag": "1L3pXwPGx0M",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/F9IsEQAAQBAJ",
+      "volumeInfo": {
+        "title": "Spirituality of Flowers",
+        "subtitle": "What Flowers Do for Us",
+        "authors": [
+          "Brid Kennedy"
+        ],
+        "publisher": "Wipf and Stock Publishers",
+        "publishedDate": "2024-10-24",
+        "description": "As a child, Bríd Kennedy was fascinated with the beautiful scents, colors, and shapes of flowers. They stirred something deep within that she could not name. The mystery and beauty of flowers sparked her curiosity to develop her research question: Is flower appreciation a participation in a Divine-human transformation process, and if so, how is it being expressed? Through a practice of authentic interiority striving towards beauty, intelligibility, truth, goodness, and love, the author now realizes how interdependent humans are with all creation. Flowers are an essential part of creation bringing in wisdom and healing. Appreciating them is a participation in a Divine-human transformation process expressed through our acknowledgement of the scent, color, shape, and any changes in these through deeply knowing that something sacred is within them. Taking precious moments to stand and smell flowers enriches the soul as it reminds people of who they are as humans and to care for Mother Earth. Drawing on science, spirituality studies, psycho-spiritual perspectives, and historical and cultural literature awakened Kennedy’s appreciation of “beauty within.” Flowers are evidence of the purpose in the universe. Consider and contemplate them in depth, as this book invites and initiates. The well-being of one’s body is not possible without the well-being of the planet.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9798385226801"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 82,
+        "printType": "BOOK",
+        "categories": [
+          "Religion"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.2.3.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=F9IsEQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=F9IsEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=F9IsEQAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=4&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=F9IsEQAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=F9IsEQAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 426812,
+          "currencyCode": "VND"
+        },
+        "retailPrice": {
+          "amount": 290232,
+          "currencyCode": "VND"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=F9IsEQAAQBAJ&rdid=book-F9IsEQAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 426812000000,
+              "currencyCode": "VND"
+            },
+            "retailPrice": {
+              "amountInMicros": 290232000000,
+              "currencyCode": "VND"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/Spirituality_of_Flowers-sample-epub.acsm?id=F9IsEQAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/Spirituality_of_Flowers-sample-pdf.acsm?id=F9IsEQAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=F9IsEQAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Consider and contemplate them in depth, as this book invites and initiates. The well-being of one’s body is not possible without the well-being of the planet."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "Lv0uEQAAQBAJ",
+      "etag": "S7fkEAmCSGY",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/Lv0uEQAAQBAJ",
+      "volumeInfo": {
+        "title": "Spirituality of Flowers",
+        "subtitle": "What Flowers Do for Us",
+        "authors": [
+          "Brid Kennedy"
+        ],
+        "publisher": "Wipf and Stock Publishers",
+        "publishedDate": "2024-10-24",
+        "description": "As a child, Bríd Kennedy was fascinated with the beautiful scents, colors, and shapes of flowers. They stirred something deep within that she could not name. The mystery and beauty of flowers sparked her curiosity to develop her research question: Is flower appreciation a participation in a Divine-human transformation process, and if so, how is it being expressed? Through a practice of authentic interiority striving towards beauty, intelligibility, truth, goodness, and love, the author now realizes how interdependent humans are with all creation. Flowers are an essential part of creation bringing in wisdom and healing. Appreciating them is a participation in a Divine-human transformation process expressed through our acknowledgement of the scent, color, shape, and any changes in these through deeply knowing that something sacred is within them. Taking precious moments to stand and smell flowers enriches the soul as it reminds people of who they are as humans and to care for Mother Earth. Drawing on science, spirituality studies, psycho-spiritual perspectives, and historical and cultural literature awakened Kennedy’s appreciation of “beauty within.” Flowers are evidence of the purpose in the universe. Consider and contemplate them in depth, as this book invites and initiates. The well-being of one’s body is not possible without the well-being of the planet.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9798385226788"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 99,
+        "printType": "BOOK",
+        "categories": [
+          "Religion"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.0.1.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=Lv0uEQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=Lv0uEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=Lv0uEQAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=5&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=Lv0uEQAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=Lv0uEQAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 426812,
+          "currencyCode": "VND"
+        },
+        "retailPrice": {
+          "amount": 290232,
+          "currencyCode": "VND"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=Lv0uEQAAQBAJ&rdid=book-Lv0uEQAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 426812000000,
+              "currencyCode": "VND"
+            },
+            "retailPrice": {
+              "amountInMicros": 290232000000,
+              "currencyCode": "VND"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/Spirituality_of_Flowers-sample-pdf.acsm?id=Lv0uEQAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=Lv0uEQAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Consider and contemplate them in depth, as this book invites and initiates. The well-being of one’s body is not possible without the well-being of the planet."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "ZkzxEAAAQBAJ",
+      "etag": "czNGUsASZGI",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/ZkzxEAAAQBAJ",
+      "volumeInfo": {
+        "title": "The Secrets of Flowers",
+        "authors": [
+          "Sally Page"
+        ],
+        "publisher": "HarperCollins UK",
+        "publishedDate": "2024-08-29",
+        "description": "‘I was in awe reading this book, wonderfully written, fascinating history and brought with it the scent of all those flowers. A delight for my senses.’ Milly Johnson The Lost Bookshop meets The Keeper of Stories in this utterly heart-warming story about friendship, hope and a mystery hidden in the language of flowers...",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9780008612917"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "0008612919"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": false
+        },
+        "pageCount": 385,
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.1.1.0.preview.2",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=ZkzxEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=ZkzxEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=ZkzxEAAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=6&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=ZkzxEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=ZkzxEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 249482,
+          "currencyCode": "VND"
+        },
+        "retailPrice": {
+          "amount": 169648,
+          "currencyCode": "VND"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=ZkzxEAAAQBAJ&rdid=book-ZkzxEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 249482000000,
+              "currencyCode": "VND"
+            },
+            "retailPrice": {
+              "amountInMicros": 169648000000,
+              "currencyCode": "VND"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/The_Secrets_of_Flowers-sample-epub.acsm?id=ZkzxEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=ZkzxEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "‘I was in awe reading this book, wonderfully written, fascinating history and brought with it the scent of all those flowers."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "EO4aEQAAQBAJ",
+      "etag": "ehG8kVEi/p4",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/EO4aEQAAQBAJ",
+      "volumeInfo": {
+        "title": "If Flowers Could Talk",
+        "authors": [
+          "Daniela M. Standley"
+        ],
+        "publisher": "Austin Macauley Publishers",
+        "publishedDate": "2024-08-16",
+        "description": "If Flowers Could Talk follows the journey of Petal, a remarkable flower, as she navigates the challenges of surviving through the four seasons. Resilient and determined, Petal never gives up, facing the harsh winter cold and the intense summer heat with unwavering perseverance. Through her experiences, readers learn about the beauty of resilience and the power of enduring hardships. As Petal travels through the seasons, she forms unique bonds with other flowers, each possessing distinct personalities and skills. Together, they face obstacles and support one another, showcasing the strength of friendship and community. This enchanting story highlights the importance of working together and the enduring spirit of nature.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9798889108160"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 66,
+        "printType": "BOOK",
+        "categories": [
+          "Juvenile Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.1.1.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=EO4aEQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=EO4aEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=EO4aEQAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=7&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=EO4aEQAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=EO4aEQAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 119914,
+          "currencyCode": "VND"
+        },
+        "retailPrice": {
+          "amount": 89936,
+          "currencyCode": "VND"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=EO4aEQAAQBAJ&rdid=book-EO4aEQAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 119914000000,
+              "currencyCode": "VND"
+            },
+            "retailPrice": {
+              "amountInMicros": 89936000000,
+              "currencyCode": "VND"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/If_Flowers_Could_Talk-sample-epub.acsm?id=EO4aEQAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/If_Flowers_Could_Talk-sample-pdf.acsm?id=EO4aEQAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=EO4aEQAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Together, they face obstacles and support one another, showcasing the strength of friendship and community. This enchanting story highlights the importance of working together and the enduring spirit of nature."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "RmTzEAAAQBAJ",
+      "etag": "XFzR43VHB5E",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/RmTzEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Buy Yourself the Damn Flowers",
+        "subtitle": "The self-love guide to growing, healing and learning to put yourself first",
+        "authors": [
+          "Tam Kaur"
+        ],
+        "publisher": "Kings Road Publishing",
+        "publishedDate": "2024-08-15",
+        "description": "I know exactly what it's like to put others first, to settle for less than you deserve and to navigate relationships while trying to balance your independence and goals. But we are worth more than this. Having embarked on my self-love journey, I found that women often lacked clarity on what self-love really means and how to achieve it and this needs to change. I've packed Buy Yourself the Damn Flowers with lessons and methods I've learnt so that no woman is left accepting what life throws at her, but rather can use every moment as a tool to craft her dream self and reality. Whether you're single, taken, heartbroken, healing or trying to level up into the best version of yourself, this book is for you. Buy Yourself the Damn Flowers is an in-depth, comprehensive guide for all things self-love, including actionable homework, transformative tools and reassuring information that will help every woman learn to: - set boundaries - escape external validation - build confidence - transform pain into power - maintain loving yourself whilst loving others, and so much more. Every woman deserves to cultivate a lasting love for the person who matters most: you. It's finally time to buy yourself the damn flowers. Tam x",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781785121753"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1785121758"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 204,
+        "printType": "BOOK",
+        "categories": [
+          "Family & Relationships"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "1.3.4.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=RmTzEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=RmTzEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=RmTzEAAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=8&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=RmTzEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=RmTzEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 415046,
+          "currencyCode": "VND"
+        },
+        "retailPrice": {
+          "amount": 282231,
+          "currencyCode": "VND"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=RmTzEAAAQBAJ&rdid=book-RmTzEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 415046000000,
+              "currencyCode": "VND"
+            },
+            "retailPrice": {
+              "amountInMicros": 282231000000,
+              "currencyCode": "VND"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/Buy_Yourself_the_Damn_Flowers-sample-epub.acsm?id=RmTzEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/Buy_Yourself_the_Damn_Flowers-sample-pdf.acsm?id=RmTzEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=RmTzEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Whether you&#39;re single, taken, heartbroken, healing or trying to level up into the best version of yourself, this book is for you."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "nJruEAAAQBAJ",
+      "etag": "no50Kz75sWY",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/nJruEAAAQBAJ",
+      "volumeInfo": {
+        "title": "Edible Flowers",
+        "subtitle": "Health Benefits, Nutrition, Processing, and Applications",
+        "authors": [
+          "Arun Kumar Gupta",
+          "Vijay Kumar",
+          "Bindu Naik",
+          "Poonam Mishra"
+        ],
+        "publisher": "Elsevier",
+        "publishedDate": "2024-07-12",
+        "description": "Edible Flowers: Health Benefits, Nutrition, Processing, and Applications discusses several edible flowers and their history, bioactive compounds, pharmacological properties, chemistry, and manifold applications. Composed of 20 chapters, the book explores significant edible flowers which have a bioactive and pharmacological attribute apart from preservation aspects. Each of the presented flowers are analyzed by its taxonomy, history, nutritional properties, important bioactive natural compounds, pharmacological potential, use in food processing, and marketability. Medicinal and edible flowers that are grown in the various countries and are thought to promote health are also the subject of this book, thus ensuring the food security aspect. Written by a team of experts in the field, this book is a good support for researchers and scientists working in the fields of food science, food technology, and nutrition, with a special interest by the study of edible flowers. - Covers the nutritional and pharmacological aspects of edible flowers - Addresses the most popular edible flowers in the world as a source for nutraceuticals - Presents application in food products and potential health benefits - Discuss the various preservation techniques to improve the storage stability of edible flowers",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9780443137709"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "0443137706"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 473,
+        "printType": "BOOK",
+        "categories": [
+          "Technology & Engineering"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "2.3.3.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=nJruEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=nJruEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=nJruEAAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=9&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=nJruEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=nJruEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 5335155,
+          "currencyCode": "VND"
+        },
+        "retailPrice": {
+          "amount": 3734608,
+          "currencyCode": "VND"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=nJruEAAAQBAJ&rdid=book-nJruEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 5335155000000,
+              "currencyCode": "VND"
+            },
+            "retailPrice": {
+              "amountInMicros": 3734608000000,
+              "currencyCode": "VND"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/Edible_Flowers-sample-epub.acsm?id=nJruEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/Edible_Flowers-sample-pdf.acsm?id=nJruEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=nJruEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Medicinal and edible flowers that are grown in the various countries and are thought to promote health are also the subject of this book, thus ensuring the food security aspect."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "WFLgEAAAQBAJ",
+      "etag": "iZLPRxrWEyQ",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/WFLgEAAAQBAJ",
+      "volumeInfo": {
+        "title": "A Bouquet of Dreams (A Year of Flowers Book #2)",
+        "authors": [
+          "Suzanne Woods Fisher"
+        ],
+        "publisher": "Baker Books",
+        "publishedDate": "2024-06-18",
+        "description": "Claire Murphy has always dreamed of owning a flower shop, and when her employers hint at retirement, she believes her moment has arrived. But first she must confront her past--and the man who caused her to flee her hometown years ago.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781493439263"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "149343926X"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 122,
+        "printType": "BOOK",
+        "categories": [
+          "Fiction"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "1.2.2.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=WFLgEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=WFLgEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com.vn/books?id=WFLgEAAAQBAJ&printsec=frontcover&dq=flowers&hl=&cd=10&source=gbs_api",
+        "infoLink": "https://play.google.com/store/books/details?id=WFLgEAAAQBAJ&source=gbs_api",
+        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=WFLgEAAAQBAJ"
+      },
+      "saleInfo": {
+        "country": "VN",
+        "saleability": "FOR_SALE",
+        "isEbook": true,
+        "listPrice": {
+          "amount": 186476,
+          "currencyCode": "VND"
+        },
+        "retailPrice": {
+          "amount": 139857,
+          "currencyCode": "VND"
+        },
+        "buyLink": "https://play.google.com/store/books/details?id=WFLgEAAAQBAJ&rdid=book-WFLgEAAAQBAJ&rdot=1&source=gbs_api",
+        "offers": [
+          {
+            "finskyOfferType": 1,
+            "listPrice": {
+              "amountInMicros": 186476000000,
+              "currencyCode": "VND"
+            },
+            "retailPrice": {
+              "amountInMicros": 139857000000,
+              "currencyCode": "VND"
+            }
+          }
+        ]
+      },
+      "accessInfo": {
+        "country": "VN",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/A_Bouquet_of_Dreams_A_Year_of_Flowers_Bo-sample-epub.acsm?id=WFLgEAAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com.vn/books/download/A_Bouquet_of_Dreams_A_Year_of_Flowers_Bo-sample-pdf.acsm?id=WFLgEAAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=WFLgEAAAQBAJ&hl=&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Claire Murphy has always dreamed of owning a flower shop, and when her employers hint at retirement, she believes her moment has arrived. But first she must confront her past--and the man who caused her to flee her hometown years ago."
+      }
+    }
+  ]
+}

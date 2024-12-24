@@ -1,4 +1,4 @@
-package com.dattruongdev.bookstore_cqrs.core.catalog.query;
+package com.dattruongdev.bookstore_cqrs.core.lending.query;
 
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.Copy;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.CopyRepository;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @HandledBy(handler = FindCopyAvailableQueryHandler.class)
-public record FindCopyAvailableQuery() implements Query<ResponseEntity<IResponse>> {
+public record FindCopyAvailableQuery(boolean isAvailable) implements Query<ResponseEntity<IResponse>> {
 }
 
 @Service
@@ -24,7 +24,7 @@ class FindCopyAvailableQueryHandler implements QueryHandler<FindCopyAvailableQue
     private final CopyRepository copyRepository;
 
     public ResponseEntity<IResponse> handle(FindCopyAvailableQuery query) {
-        List<Copy> copies = copyRepository.findAvailableCopies();
+        List<Copy> copies = copyRepository.findByAvailable(query.isAvailable());
         if (copies.isEmpty()) {
             return ResponseEntity.status(404).body(new ErrorResponse(404, "No available copy found"));
         }

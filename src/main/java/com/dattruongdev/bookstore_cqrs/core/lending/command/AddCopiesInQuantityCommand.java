@@ -1,6 +1,5 @@
 package com.dattruongdev.bookstore_cqrs.core.lending.command;
 
-import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Isbn;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.Copy;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.CopyRepository;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.HandledBy;
@@ -28,9 +27,7 @@ class AddCopiesInQuantityCommandHandler implements CommandHandler<AddCopiesInQua
         List<Copy> copies = new ArrayList<>();
         for (int i = 0; i < command.quantity(); i++) {
             Copy copy = new Copy();
-            Isbn isbn = new Isbn();
-            isbn.setValue(command.Isbn());
-            copy.setIsbn(isbn);
+            copy.setIsbn(command.Isbn());
             copy.setCreatedAt(new Date());
             copy.setUpdatedAt(new Date());
 

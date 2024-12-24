@@ -1,7 +1,6 @@
 package com.dattruongdev.bookstore_cqrs.core.catalog.command;
 
-import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Book;
-import com.dattruongdev.bookstore_cqrs.core.catalog.domain.BookRepository;
+import com.dattruongdev.bookstore_cqrs.core.catalog.domain.*;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.Copy;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.CopyRepository;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.HandledBy;
@@ -11,28 +10,45 @@ import com.dattruongdev.bookstore_cqrs.response.ApiResponse;
 import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @HandledBy(handler = AddBookCommandHandler.class)
-public record AddBookCommand(String title, String edition, String author, String publisher, String source, double cost) implements Command<ResponseEntity<IResponse>> {
+public record AddBookCommand(String title, List<String> authors, String publisher, Cost cost, List<Category> categories) implements Command<ResponseEntity<IResponse>> {
 
 }
 
 @RequiredArgsConstructor
+@Service
 class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEntity<IResponse>> {
     private final BookRepository bookRepository;
     private final CopyRepository copyRepository;
+    private final CategoryRepository categoryRepository;
 
     @Override
     public ResponseEntity<IResponse> handle(AddBookCommand command) {
         Book book = new Book();
-        book.setAuthor(command.author());
+        book.setAuthors(command.authors());
         book.setCost(command.cost());
-        book.setEdition(command.edition());
-        book.setSource(command.source());
 
         book.setPublisher(command.publisher());
         book.setTitle(command.title());
-        book = bookRepository.save(book);
+        book.setPublisher(command.publisher());
+        book.setPublishedDate("2021-01-01");
+        book.setDescription("Description");
+        book.setImageUrl("https://www.google.com");
+        ArrayList<String> categories = new ArrayList<>();
+        command.categories().forEach(category -> categories.add(category.getName()));
+        List<Category> cats = categoryRepository.findByNameIn(categories);
+        book.setCategories(cats);
+        try {
+            book = bookRepository.save(book);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new ApiResponse(500, "Book not added", null));
+        }
 
         for (int i = 0; i < 3; i++) {
             Copy copy = new Copy();

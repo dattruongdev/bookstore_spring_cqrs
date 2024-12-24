@@ -1,6 +1,5 @@
-package com.dattruongdev.bookstore_cqrs.core.catalog.query;
+package com.dattruongdev.bookstore_cqrs.core.lending.query;
 
-import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Isbn;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.Copy;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.CopyRepository;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.HandledBy;
@@ -25,9 +24,7 @@ class FindByIsbnQueryHandler implements QueryHandler<FindCopyByIsbnQuery, Respon
     private final CopyRepository copyRepository;
     @Override
     public ResponseEntity<IResponse> handle(FindCopyByIsbnQuery command) {
-        Isbn isbn = new Isbn();
-        isbn.setValue(command.Isbn());
-        List<Copy> copies = copyRepository.findByIsbn(isbn);
+        List<Copy> copies = copyRepository.findByIsbn(command.Isbn());
 
         if (copies.isEmpty()) {
             return ResponseEntity.status(404).body(new ErrorResponse(404, "No copies found"));

@@ -1,12 +1,9 @@
 package com.dattruongdev.bookstore_cqrs.core.lending.command;
 
-import com.dattruongdev.bookstore_cqrs.core.catalog.query.FindCopyAvailableQuery;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.Borrow;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.BorrowRepository;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.Copy;
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.CopyRepository;
-import com.dattruongdev.bookstore_cqrs.cqrs.DispatchableProcessor;
-import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.DispatchableHandler;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.command.Command;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.command.CommandHandler;
 import com.dattruongdev.bookstore_cqrs.response.ApiResponse;
@@ -30,7 +27,7 @@ class LendBookCommandHandler implements CommandHandler<LendBookCommand, Response
 
     @Transactional
     public ResponseEntity<IResponse> handle(LendBookCommand command) {
-        List<Copy> copies = copyRepository.findAvailableCopies();
+        List<Copy> copies = copyRepository.findByAvailable(true);
         if (copies.isEmpty()) {
             return ResponseEntity.status(404).body(new ErrorResponse(404, "No available copies"));
         }
