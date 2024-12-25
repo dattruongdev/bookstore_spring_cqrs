@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -65,6 +66,7 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
     @Transactional
     protected void createBooksIfNotExist() {
         List<Book> current = bookRepository.findAll();
+        boolean isFeatured = false;
         if (!current.isEmpty()) {
             return;
         }
@@ -87,6 +89,7 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                 book.setTitle(bookJSON.volumeInfo.title);
                 book.setAuthors(bookJSON.volumeInfo.authors);
                 book.setCost(cost);
+                book.setFeatured(isFeatured);
                 book.setDescription(bookJSON.volumeInfo.description);
                 book.setPublisher(bookJSON.volumeInfo.publisher);
                 book.setPublishedDate(bookJSON.volumeInfo.publishedDate);
@@ -95,7 +98,13 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                 }
 
                 book.setCategories(cats);
+                Random r = new Random();
+                double rangeMin = 0;
+                double rangeMax = 5;
+                double randomValue = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+                book.setRating(randomValue);
                 books.add(book);
+                isFeatured = !isFeatured;
             }
 
             bookRepository.saveAll(books);

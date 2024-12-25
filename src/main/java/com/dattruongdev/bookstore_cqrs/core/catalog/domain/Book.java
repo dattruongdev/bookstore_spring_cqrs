@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -16,6 +17,10 @@ public class Book {
     @Id
     private String id;
     private String title;
+    @Transient
+    private int totalBooks;
+    private double rating;
+    private boolean isFeatured;
     private String publisher;
     private String publishedDate;
     private String description;

@@ -3,6 +3,7 @@ package com.dattruongdev.bookstore_cqrs.controller;
 import com.dattruongdev.bookstore_cqrs.core.catalog.command.AddBookCommand;
 import com.dattruongdev.bookstore_cqrs.core.catalog.query.FindAllBooksQuery;
 import com.dattruongdev.bookstore_cqrs.core.catalog.query.FindAllCategoriesQuery;
+import com.dattruongdev.bookstore_cqrs.core.catalog.query.FindBooksInPageQuery;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.DispatchableHandler;
 import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("${api.root}/catalog")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class CatalogController {
     private final DispatchableHandler dispatchableHandler;
 
     @GetMapping("/books")
-    @CrossOrigin(origins = "http://localhost:5173")
     public ResponseEntity<IResponse> getAllBooks(FindAllBooksQuery query) {
         return dispatchableHandler.dispatch(query);
     }
@@ -31,4 +32,14 @@ public class CatalogController {
         return dispatchableHandler.dispatch(command);
     }
 
+    @GetMapping("/books-by-page")
+    public ResponseEntity<IResponse> findBooksInPage(@RequestParam int  page) {
+        FindBooksInPageQuery query = new FindBooksInPageQuery(page);
+        return dispatchableHandler.dispatch(query);
+    }
+    @GetMapping("/books-by-page")
+    public ResponseEntity<IResponse> findBooksInPage(@RequestParam int  page) {
+        FindBooksInPageQuery query = new FindBooksInPageQuery(page);
+        return dispatchableHandler.dispatch(query);
+    }
 }
