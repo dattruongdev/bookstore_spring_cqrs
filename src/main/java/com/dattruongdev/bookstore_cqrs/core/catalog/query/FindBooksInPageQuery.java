@@ -15,7 +15,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @HandledBy(handler = FindBooksInPageQueryHandler.class)
 public record FindBooksInPageQuery(int page) implements Query<ResponseEntity<IResponse>> {
@@ -32,7 +34,11 @@ class FindBooksInPageQueryHandler implements QueryHandler<FindBooksInPageQuery, 
         if (books.isEmpty()) {
             return ResponseEntity.status(404).body(new ErrorResponse(404, "No books found"));
         }
+        Map<String, Object> response = new HashMap<>();
+        response.put("statusCode", 200);
+        response.put("message", "Books found");
+        response.put("data", books);
 
-        return ResponseEntity.ok().body(new ApiResponse(200, "Books found", new Data(bookRepository.count(),books)));
+        return ResponseEntity.ok().body(new ApiResponse(response));
     }
 }

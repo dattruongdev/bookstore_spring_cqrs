@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @HandledBy(handler = FindCopyAvailableQueryHandler.class)
 public record FindCopyAvailableQuery(boolean isAvailable) implements Query<ResponseEntity<IResponse>> {
@@ -29,6 +30,10 @@ class FindCopyAvailableQueryHandler implements QueryHandler<FindCopyAvailableQue
             return ResponseEntity.status(404).body(new ErrorResponse(404, "No available copy found"));
         }
 
-        return ResponseEntity.ok().body(new ApiResponse(200, "Copies found", copies));
+        return ResponseEntity.ok().body(new ApiResponse(Map.of(
+            "statusCode", 200,
+            "message", "Available copies found",
+            "data", copies
+        )));
     }
 }

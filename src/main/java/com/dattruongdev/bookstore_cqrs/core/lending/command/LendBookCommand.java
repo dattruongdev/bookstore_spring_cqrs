@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 public record LendBookCommand(String userId) implements Command<ResponseEntity<IResponse>> {
 }
@@ -40,6 +41,10 @@ class LendBookCommandHandler implements CommandHandler<LendBookCommand, Response
         borrowRepository.save(borrow);
         copyRepository.save(copy);
 
-        return ResponseEntity.ok().body(new ApiResponse(201, "Book lent successfully", null));
+        return ResponseEntity.ok().body(new ApiResponse(Map.of(
+            "statusCode", 200,
+            "message", "Book lent",
+            "data", borrow
+        )));
     }
 }

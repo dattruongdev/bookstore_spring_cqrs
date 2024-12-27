@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 public record FindBorrowByCopyIdQuery(String copyId) implements Query<ResponseEntity<IResponse>> {
 }
 
@@ -21,8 +23,15 @@ class FindBorrowByCopyIdQueryHandler implements QueryHandler<FindBorrowByCopyIdQ
     public ResponseEntity<IResponse> handle(FindBorrowByCopyIdQuery query) {
         Borrow borrow = borrowRepository.findByCopyId(query.copyId());
         if (borrow == null) {
-            return ResponseEntity.ok(new ApiResponse(404, "Borrow not found", null));
+            return ResponseEntity.ok(new ApiResponse(Map.of(
+                "statusCode", 404,
+                "message", "No borrowed book"
+            )));
         }
-        return ResponseEntity.ok(new ApiResponse(200, "Borrow found", borrow));
+        return ResponseEntity.ok(new ApiResponse(Map.of(
+            "statusCode", 200,
+            "message", "Borrow found",
+            "data", borrow
+        )));
     }
 }

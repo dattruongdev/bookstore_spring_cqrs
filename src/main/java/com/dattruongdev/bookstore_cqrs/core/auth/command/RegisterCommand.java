@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @HandledBy(handler = RegisterCommandHandler.class)
 public record RegisterCommand(String username,
@@ -47,6 +48,9 @@ class RegisterCommandHandler implements CommandHandler<RegisterCommand, Response
 
         userRepository.save(user);
 
-        return ResponseEntity.status(201).body(new ApiResponse(201, "User registered successfully", null));
+        return ResponseEntity.status(201).body(new ApiResponse(Map.of(
+                "statusCode", 201,
+                "message", "User registered"
+        )));
     }
 }

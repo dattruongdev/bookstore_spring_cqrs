@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 public record FindBorrowByUserIdQuery(String userId) implements Query<ResponseEntity<IResponse>> {
 }
 
@@ -25,6 +27,10 @@ class FindByUserIdQueryHandler implements QueryHandler<FindBorrowByUserIdQuery,R
             return ResponseEntity.status(400).body(new ErrorResponse(404, "Borrow not found"));
         }
 
-        return ResponseEntity.ok().body(new ApiResponse(200, "Borrow found", borrow));
+        return ResponseEntity.ok().body(new ApiResponse(Map.of(
+            "statusCode", 200,
+            "message", "Borrow found",
+            "data", borrow
+        )));
     }
 }

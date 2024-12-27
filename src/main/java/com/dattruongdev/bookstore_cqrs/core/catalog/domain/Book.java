@@ -24,9 +24,11 @@ public class Book {
     private String publisher;
     private String publishedDate;
     private String description;
+    @Transient
     private Cost cost;
     private String imageUrl;
-    private List<String> authors;
+    @DocumentReference
+    private List<Author> authors;
 //
     @DocumentReference
     private List<Category> categories;

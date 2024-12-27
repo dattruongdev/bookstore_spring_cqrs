@@ -20,10 +20,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -34,6 +31,8 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
+    private final BookCostRepository bookCostRepository;
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
@@ -55,12 +54,35 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
         }
     }
 
-    private List<Category> createCategoriesIfNotExist(Dta data) {
-        Set<String> categories = data.items.stream().map(bookJSON -> bookJSON.volumeInfo.categories).flatMap(List::stream).collect(Collectors.toSet());
-        List<Category> foundCats = categoryRepository.findByNameIn(categories.stream().toList());
-        List<Category> cats =  categoryRepository.saveAll(foundCats);
+    private void createAuthorsIfNotExists(List<String> auths, Book book) {
+        List<Author> existingAuthors = authorRepository.findAll();
 
-        return cats;
+        if (!existingAuthors.isEmpty()) {
+            authorRepository.deleteAll();
+        }
+        List<Author> authors = auths.stream().map(author -> {
+            Author a = new Author();
+            a.setFullName(author);
+            return a;
+        }).toList();
+
+        book.setAuthors(authorRepository.saveAll(authors));
+    }
+
+    private void createCategoriesIfNotExist(List<String> categories, Book book) {
+        List<Category> foundCats = categoryRepository.findAll();
+        if (!foundCats.isEmpty()) {
+            categoryRepository.deleteAll();
+        }
+        Set<String> catSet = new HashSet<>(categories);
+
+        List<Category> newCats = catSet.stream().map(cat -> {
+            Category category = new Category();
+            category.setName(cat);
+            return category;
+        }).toList();
+
+        book.setCategories(categoryRepository.saveAll(newCats));
     }
 
     @Transactional
@@ -68,45 +90,67 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
         List<Book> current = bookRepository.findAll();
         boolean isFeatured = false;
         if (!current.isEmpty()) {
-            return;
+            bookRepository.deleteAll();
         }
         List<Book> books = new ArrayList<>();
         try {
             Dta data = readJson();
-            List<Category> categories = createCategoriesIfNotExist(data);
 
-            for (BookJSON bookJSON : data.items) {
+            List<BookCost> bookCosts = new ArrayList<>();
+            for (int i = 0; i < data.items.size(); i++) {
                 Book book = new Book();
+                BookJSON bookJSON = data.items.get(i);
+                BookCost bookCost = new BookCost();
+                bookCost.setBookId(bookJSON.id);
+
+//              ADD CATEGORIES
+                createCategoriesIfNotExist(bookJSON.volumeInfo.categories, book);
+//              ADD AUTHORS
+                createAuthorsIfNotExists(bookJSON.volumeInfo.authors, book);
+
                 Cost cost = new Cost();
-
-                List<Category> cats = categories.stream().filter(cat -> bookJSON.volumeInfo.categories.contains(cat.getName())).toList();
-
-                if (bookJSON.saleInfo.listPrice != null) {
-                    cost.setCurrency(bookJSON.saleInfo.listPrice.currencyCode);
+                if(bookJSON.saleInfo.listPrice != null) {
                     cost.setAmount(bookJSON.saleInfo.listPrice.amount);
+                    bookCost.setOriginalCost(cost);
+
+                    if(i % 2 == 0) {
+                        Random r = new Random();
+                        double randomValue = r.nextDouble();
+                        cost.setAmount(bookJSON.saleInfo.listPrice.amount * (1 -randomValue));
+
+                        Date dt = new Date();
+                        Calendar c = Calendar.getInstance();
+                        c.setTime(dt);
+                        c.add(Calendar.DATE, 1);
+                        dt = c.getTime();
+
+
+                        bookCost.setWeekDeal(true);
+                        bookCost.changeCost(cost, dt, randomValue);
+                    } else {
+                        bookCost.setWeekDeal(false);
+                        bookCost.changeCost(cost, null, 0);
+                    }
+                    Random r = new Random();
+                    double randomValue = 3.0 + (5.0 - 3.0) * r.nextDouble();
+                    book.setCost(cost);
+                    if(bookJSON.volumeInfo.imageLinks != null) {
+                        book.setImageUrl(bookJSON.volumeInfo.imageLinks.thumbnail);
+                    }
+                    book.setFeatured(isFeatured);
+                    book.setPublisher(bookJSON.volumeInfo.publisher);
+                    book.setPublishedDate(bookJSON.volumeInfo.publishedDate);
+                    book.setDescription(bookJSON.volumeInfo.description);
+
+                    book.setRating(randomValue);
+                    books.add(book);
+                    isFeatured = !isFeatured;
                 }
 
-                book.setTitle(bookJSON.volumeInfo.title);
-                book.setAuthors(bookJSON.volumeInfo.authors);
-                book.setCost(cost);
-                book.setFeatured(isFeatured);
-                book.setDescription(bookJSON.volumeInfo.description);
-                book.setPublisher(bookJSON.volumeInfo.publisher);
-                book.setPublishedDate(bookJSON.volumeInfo.publishedDate);
-                if (bookJSON.volumeInfo.imageLinks != null) {
-                    book.setImageUrl(StringUtils.isEmpty(bookJSON.volumeInfo.imageLinks.smallThumbnail) ? bookJSON.volumeInfo.imageLinks.thumbnail : bookJSON.volumeInfo.imageLinks.smallThumbnail);
-                }
-
-                book.setCategories(cats);
-                Random r = new Random();
-                double rangeMin = 0;
-                double rangeMax = 5;
-                double randomValue = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-                book.setRating(randomValue);
-                books.add(book);
-                isFeatured = !isFeatured;
+                bookCosts.add(bookCost);
             }
 
+            bookCostRepository.saveAll(bookCosts);
             bookRepository.saveAll(books);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

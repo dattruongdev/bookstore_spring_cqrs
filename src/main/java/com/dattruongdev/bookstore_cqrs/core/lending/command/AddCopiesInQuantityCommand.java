@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @HandledBy(handler = AddCopiesInQuantityCommandHandler.class)
 public record AddCopiesInQuantityCommand(String Isbn, int quantity) implements Command<ResponseEntity<IResponse>> {
@@ -36,6 +37,9 @@ class AddCopiesInQuantityCommandHandler implements CommandHandler<AddCopiesInQua
 
         copyRepository.saveAll(copies);
 
-        return ResponseEntity.ok().body(new ApiResponse(201, "Copies added successfully", null));
+        return ResponseEntity.ok().body(new ApiResponse(Map.of(
+            "statusCode", 201,
+            "message", "Copies added successfully"
+        )));
     }
 }

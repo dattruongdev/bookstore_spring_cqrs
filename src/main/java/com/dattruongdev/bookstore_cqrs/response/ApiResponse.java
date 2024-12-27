@@ -1,4 +1,6 @@
 package com.dattruongdev.bookstore_cqrs.response;
 
-public record ApiResponse(int statusCode, String message, Object data) implements IResponse{
+import java.util.Map;
+
+public record ApiResponse(Map<String, Object> response) implements IResponse{
 }

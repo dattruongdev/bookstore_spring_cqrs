@@ -1,4 +1,0 @@
-spring.application.name=
-jwt.secret=
-api.root=
-spring.data.mongodb.uri=

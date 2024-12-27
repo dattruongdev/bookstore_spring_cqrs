@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.Map;
 
 @HandledBy(handler = ReturnCopyCommandHandler.class)
 public record ReturnCopyCommand(String borrowId) implements Command<ResponseEntity<IResponse>> {
@@ -39,10 +40,14 @@ class ReturnCopyCommandHandler implements CommandHandler<ReturnCopyCommand, Resp
         Copy copy = copyRepository.findById(borrow.getCopyId()).orElse(null);
         if (copy != null) {
             copy.makeAvailable();
-            copyRepository.save(copy);
+            copy = copyRepository.save(copy);
         }
 
-        return ResponseEntity.ok().body(new ApiResponse(200, "Book returned successfully", null));
+        return ResponseEntity.ok().body(new ApiResponse(Map.of(
+            "statusCode", 200,
+            "message", "Book returned",
+            "data", copy
+        )));
     }
 }
 

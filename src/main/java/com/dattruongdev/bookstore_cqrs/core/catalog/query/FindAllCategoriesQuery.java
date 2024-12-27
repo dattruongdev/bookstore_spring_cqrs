@@ -13,7 +13,9 @@ import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @HandledBy(handler = FindAllCategoriesQueryHandler.class)
 public record FindAllCategoriesQuery() implements Query<ResponseEntity<IResponse>> {
@@ -31,6 +33,11 @@ class FindAllCategoriesQueryHandler implements QueryHandler<FindAllCategoriesQue
             return ResponseEntity.ok().body(new ErrorResponse(404, "No categories found"));
         }
 
-        return ResponseEntity.ok().body(new ApiResponse(200, "Categories found", categories));
+        Map<String, Object> response = new HashMap<>();
+        response.put("statusCode", 200);
+        response.put("message", "Categories found");
+        response.put("data", categories);
+
+        return ResponseEntity.ok().body(new ApiResponse(response));
     }
 }

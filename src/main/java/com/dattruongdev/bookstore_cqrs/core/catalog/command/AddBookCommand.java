@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @HandledBy(handler = AddBookCommandHandler.class)
 public record AddBookCommand(String title, List<String> authors, String publisher, Cost cost, List<Category> categories) implements Command<ResponseEntity<IResponse>> {
@@ -31,7 +32,12 @@ class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEn
     @Override
     public ResponseEntity<IResponse> handle(AddBookCommand command) {
         Book book = new Book();
-        book.setAuthors(command.authors());
+        List<Author> authors = command.authors().stream().map(author -> {
+            Author a = new Author();
+            a.setFullName(author);
+            return a;
+        }).toList();
+        book.setAuthors(authors);
         book.setCost(command.cost());
 
         book.setPublisher(command.publisher());
@@ -47,7 +53,11 @@ class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEn
         try {
             book = bookRepository.save(book);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(new ApiResponse(500, "Book not added", null));
+            return ResponseEntity.status(500).body(new ApiResponse(Map.of(
+                    "statusCode", 500,
+                    "message", "Error occurred while adding book",
+                    "error", e.getMessage(
+            ))));
         }
 
         for (int i = 0; i < 3; i++) {
@@ -57,6 +67,9 @@ class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEn
             copyRepository.save(copy);
         }
 
-        return ResponseEntity.ok().body(new ApiResponse(200, "Book added successfully", null));
+        return ResponseEntity.ok().body(new ApiResponse(Map.of(
+                "statusCode", 201,
+                "message", "Book added successfully"
+        )));
     }
 }
