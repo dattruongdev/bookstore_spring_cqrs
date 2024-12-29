@@ -32,13 +32,18 @@ class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEn
     @Override
     public ResponseEntity<IResponse> handle(AddBookCommand command) {
         Book book = new Book();
+
+
+        BookCost bookCost = new BookCost();
+        bookCost.changeCost(command.cost(), null, 0);
+
         List<Author> authors = command.authors().stream().map(author -> {
             Author a = new Author();
             a.setFullName(author);
             return a;
         }).toList();
         book.setAuthors(authors);
-        book.setCost(command.cost());
+        book.setCost(bookCost);
 
         book.setPublisher(command.publisher());
         book.setTitle(command.title());

@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.json.ParseException;
+import org.bson.types.ObjectId;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -55,11 +56,6 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
     }
 
     private void createAuthorsIfNotExists(List<String> auths, Book book) {
-        List<Author> existingAuthors = authorRepository.findAll();
-
-        if (!existingAuthors.isEmpty()) {
-            authorRepository.deleteAll();
-        }
         List<Author> authors = auths.stream().map(author -> {
             Author a = new Author();
             a.setFullName(author);
@@ -70,10 +66,6 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
     }
 
     private void createCategoriesIfNotExist(List<String> categories, Book book) {
-        List<Category> foundCats = categoryRepository.findAll();
-        if (!foundCats.isEmpty()) {
-            categoryRepository.deleteAll();
-        }
         Set<String> catSet = new HashSet<>(categories);
 
         List<Category> newCats = catSet.stream().map(cat -> {
@@ -87,8 +79,22 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
 
     @Transactional
     protected void createBooksIfNotExist() {
-        List<Book> current = bookRepository.findAll();
         boolean isFeatured = false;
+        List<Book> current = bookRepository.findAll();
+        List<BookCost> currentCost = bookCostRepository.findAll();
+        List<Author> existingAuthors = authorRepository.findAll();
+        List<Category> foundCats = categoryRepository.findAll();
+        if (!foundCats.isEmpty()) {
+            categoryRepository.deleteAll();
+        }
+
+        if (!existingAuthors.isEmpty()) {
+            authorRepository.deleteAll();
+        }
+
+        if (!currentCost.isEmpty()) {
+            bookCostRepository.deleteAll();
+        }
         if (!current.isEmpty()) {
             bookRepository.deleteAll();
         }
@@ -101,7 +107,8 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                 Book book = new Book();
                 BookJSON bookJSON = data.items.get(i);
                 BookCost bookCost = new BookCost();
-                bookCost.setBookId(bookJSON.id);
+                ObjectId bookId = ObjectId.get();
+                book.setId(bookId.toString());
 
 //              ADD CATEGORIES
                 createCategoriesIfNotExist(bookJSON.volumeInfo.categories, book);
@@ -111,8 +118,8 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                 Cost cost = new Cost();
                 if(bookJSON.saleInfo.listPrice != null) {
                     cost.setAmount(bookJSON.saleInfo.listPrice.amount);
+                    cost.setCurrency(bookJSON.saleInfo.listPrice.currencyCode);
                     bookCost.setOriginalCost(cost);
-
                     if(i % 2 == 0) {
                         Random r = new Random();
                         double randomValue = r.nextDouble();
@@ -131,21 +138,25 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                         bookCost.setWeekDeal(false);
                         bookCost.changeCost(cost, null, 0);
                     }
-                    Random r = new Random();
-                    double randomValue = 3.0 + (5.0 - 3.0) * r.nextDouble();
-                    book.setCost(cost);
-                    if(bookJSON.volumeInfo.imageLinks != null) {
-                        book.setImageUrl(bookJSON.volumeInfo.imageLinks.thumbnail);
-                    }
-                    book.setFeatured(isFeatured);
-                    book.setPublisher(bookJSON.volumeInfo.publisher);
-                    book.setPublishedDate(bookJSON.volumeInfo.publishedDate);
-                    book.setDescription(bookJSON.volumeInfo.description);
-
-                    book.setRating(randomValue);
-                    books.add(book);
-                    isFeatured = !isFeatured;
+                } else {
+                    cost.setAmount(0);
+                    cost.setCurrency("VND");
+                    bookCost.changeCost(cost, null, 0);
                 }
+                if(bookJSON.volumeInfo.imageLinks != null) {
+                    book.setImageUrl(bookJSON.volumeInfo.imageLinks.thumbnail);
+                }
+                Random r = new Random();
+                double randomValue = 3.0 + (5.0 - 3.0) * r.nextDouble();
+                book.setFeatured(isFeatured);
+                book.setPublisher(bookJSON.volumeInfo.publisher);
+                book.setPublishedDate(bookJSON.volumeInfo.publishedDate);
+                book.setDescription(bookJSON.volumeInfo.description);
+
+                book.setRating(randomValue);
+                book.setCost(bookCost);
+                books.add(book);
+                isFeatured = !isFeatured;
 
                 bookCosts.add(bookCost);
             }

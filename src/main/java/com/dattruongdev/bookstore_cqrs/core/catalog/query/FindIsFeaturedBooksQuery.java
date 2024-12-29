@@ -9,10 +9,7 @@ import com.dattruongdev.bookstore_cqrs.response.ApiResponse;
 import com.dattruongdev.bookstore_cqrs.response.ErrorResponse;
 import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.LookupOperation;
-import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -27,25 +24,11 @@ public record FindIsFeaturedBooksQuery(int size) implements Query<ResponseEntity
 @Service
 @RequiredArgsConstructor
 class FindIsFeaturedBooksQueryHandler implements QueryHandler<FindIsFeaturedBooksQuery, ResponseEntity<IResponse>> {
-    private final MongoTemplate mongoTemplate;
+    private final BookRepository bookRepository;
 
     @Override
     public ResponseEntity<IResponse> handle(FindIsFeaturedBooksQuery query) {
-//        List<Book> books  = bookRepository.findIsFeaturedBooks(PageRequest.of(0, query.size())).stream().toList();
-
-        LookupOperation lookupOperation = LookupOperation.newLookup()
-                .from("bookCost")
-                .localField("_id")
-                .foreignField("bookId")
-                .as("cost");
-
-        Aggregation aggregation = Aggregation.newAggregation(
-                lookupOperation,
-                Aggregation.match(Criteria.where("isFeatured").is(true)),
-                Aggregation.sample(query.size())
-        );
-
-        List<Book> books = mongoTemplate.aggregate(aggregation, "book", Book.class).getMappedResults();
+        List<Book> books  = bookRepository.findIsFeaturedBooks(PageRequest.of(0, query.size())).stream().toList();
 
         if (books.isEmpty()) {
             return ResponseEntity.status(404).body(new ErrorResponse(404, "No books found"));

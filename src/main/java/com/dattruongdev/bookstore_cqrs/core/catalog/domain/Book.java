@@ -1,6 +1,7 @@
 package com.dattruongdev.bookstore_cqrs.core.catalog.domain;
 
 import com.dattruongdev.bookstore_cqrs.core.lending.domain.Copy;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -24,11 +25,11 @@ public class Book {
     private String publisher;
     private String publishedDate;
     private String description;
-    @Transient
-    private Cost cost;
     private String imageUrl;
     @DocumentReference
     private List<Author> authors;
+    @DocumentReference
+    private BookCost cost;
 //
     @DocumentReference
     private List<Category> categories;

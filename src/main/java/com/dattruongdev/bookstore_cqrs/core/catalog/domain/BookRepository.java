@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface BookRepository extends MongoRepository<Book, String> {
-//    @Query(value = "{ 'isFeatured' : true }")
-//    Page<Book> findIsFeaturedBooks(Pageable pageable);
-//    @Query(value = "{ '$and': [ {'category': {'$in': ?0}}, {'authors': {'$in': ?1}} ] }")
-//    Page<Book> findBooksByCategoriesAndAuthorsInPage(List<Category> categories, List<Author> authors, Pageable pageable);
-//
-//    Page<Book> findByOrderByPublishedDateDesc(Pageable pageable);
+    @Query(value = "{ 'isFeatured' : true }")
+    Page<Book> findIsFeaturedBooks(Pageable pageable);
+    @Query(value = "{ '$and': [ {'category': {'$in': ?0}}, {'authors': {'$in': ?1}} ] }")
+    Page<Book> findBooksByCategoriesAndAuthorsInPage(List<Category> categories, List<Author> authors, Pageable pageable);
+
+    Page<Book> findByOrderByPublishedDateDesc(Pageable pageable);
 }
