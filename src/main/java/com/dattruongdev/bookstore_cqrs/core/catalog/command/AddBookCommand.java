@@ -11,7 +11,6 @@ import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +33,8 @@ class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEn
         Book book = new Book();
 
 
-        BookCost bookCost = new BookCost();
-        bookCost.changeCost(command.cost(), null, 0);
+        BookPricing bookPricing = new BookPricing();
+        bookPricing.changeCost(command.cost(), null, 0);
 
         List<Author> authors = command.authors().stream().map(author -> {
             Author a = new Author();
@@ -43,7 +42,7 @@ class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEn
             return a;
         }).toList();
         book.setAuthors(authors);
-        book.setCost(bookCost);
+        book.setBookPricing(bookPricing);
 
         book.setPublisher(command.publisher());
         book.setTitle(command.title());
@@ -68,7 +67,7 @@ class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEn
         for (int i = 0; i < 3; i++) {
             Copy copy = new Copy();
             copy.setAvailable(true);
-            copy.setIsbn(book.getId());
+            copy.setIsbn(book.getId().toString());
             copyRepository.save(copy);
         }
 

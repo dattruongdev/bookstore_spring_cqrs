@@ -1,18 +1,27 @@
 package com.dattruongdev.bookstore_cqrs.core.catalog.domain;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.dattruongdev.bookstore_cqrs.response.IResponse;
+import org.bson.types.ObjectId;
+import org.springframework.data.domain.*;
+import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
 
-public interface BookRepository extends MongoRepository<Book, String> {
+public interface BookRepository extends MongoRepository<Book, ObjectId> {
     @Query(value = "{ 'isFeatured' : true }")
     Page<Book> findIsFeaturedBooks(Pageable pageable);
     @Query(value = "{ '$and': [ {'category': {'$in': ?0}}, {'authors': {'$in': ?1}} ] }")
     Page<Book> findBooksByCategoriesAndAuthorsInPage(List<Category> categories, List<Author> authors, Pageable pageable);
 
     Page<Book> findByOrderByPublishedDateDesc(Pageable pageable);
+
+    @Query(value = "{'rating': {'$gte':  4.0, '$lte':  5.0}}")
+    Page<Book> findByOrderByRatingDesc(PageRequest pageable);
+
+    @Aggregation(pipeline = { "{ '$lookup': { 'from': 'bookPricing', 'localField': 'bookPricing', 'foreignField': '_id', 'as': 'bookPricing' } }", "{ '$unwind': '$bookPricing' }", "{ '$match': { 'bookPricing.isWeekDeal': true } }" })
+    List<Book> findByBookPricingIsWeekDealTrue();
 }

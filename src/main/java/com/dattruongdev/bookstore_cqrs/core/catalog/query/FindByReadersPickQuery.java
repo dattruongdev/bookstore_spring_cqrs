@@ -11,40 +11,35 @@ import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.LookupOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@HandledBy(handler = FindNewReleaseQueryHandler.class)
-public record FindNewReleaseQuery() implements Query<ResponseEntity<IResponse>> {
+@HandledBy(handler = FindByReadersPickQueryHandler.class)
+public record FindByReadersPickQuery() implements Query<ResponseEntity<IResponse>> {
 }
 
 @Service
 @RequiredArgsConstructor
-class FindNewReleaseQueryHandler implements QueryHandler<FindNewReleaseQuery, ResponseEntity<IResponse>> {
+class FindByReadersPickQueryHandler implements QueryHandler<FindByReadersPickQuery, ResponseEntity<IResponse>> {
     private final BookRepository bookRepository;
 
     @Override
-    public ResponseEntity<IResponse> handle(FindNewReleaseQuery query) {
-
-
-        List<Book> books = bookRepository.findByOrderByPublishedDateDesc(PageRequest.of(0, 6)).toList();
+    public ResponseEntity<IResponse> handle(FindByReadersPickQuery query) {
+        List<Book> books = bookRepository.findByOrderByRatingDesc(PageRequest.of(0, 6, Sort.by(Sort.Direction.DESC, "rating"))).toList();
 
         if (books.isEmpty()) {
-            return ResponseEntity.status(404).body(new ErrorResponse(404, "No books found"));
+            return ResponseEntity.status(404).body(new ErrorResponse(404, "Books not found"));
         }
 
         Map<String, Object> response = Map.of(
-            "statusCode", 200,
-            "message", "Books found",
-            "data", books
+                "statusCode", 200,
+                "message", "Books found",
+                "data", books
         );
-
         return ResponseEntity.ok().body(new ApiResponse(response));
     }
 }

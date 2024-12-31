@@ -1,22 +1,26 @@
 package com.dattruongdev.bookstore_cqrs.core.catalog.domain;
 
-import com.dattruongdev.bookstore_cqrs.core.lending.domain.Copy;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.bson.codecs.pojo.annotations.BsonProperty;
+import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 
 @Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+@Document
 public class Book {
     @Id
-    private String id;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private ObjectId id;
     private String title;
     @Transient
     private int totalBooks;
@@ -29,7 +33,7 @@ public class Book {
     @DocumentReference
     private List<Author> authors;
     @DocumentReference
-    private BookCost cost;
+    private BookPricing bookPricing;
 //
     @DocumentReference
     private List<Category> categories;

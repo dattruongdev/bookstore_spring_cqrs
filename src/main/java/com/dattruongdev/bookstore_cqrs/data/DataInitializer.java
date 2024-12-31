@@ -10,7 +10,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.json.ParseException;
 import org.bson.types.ObjectId;
@@ -22,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
@@ -81,7 +79,7 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
     protected void createBooksIfNotExist() {
         boolean isFeatured = false;
         List<Book> current = bookRepository.findAll();
-        List<BookCost> currentCost = bookCostRepository.findAll();
+        List<BookPricing> currentCost = bookCostRepository.findAll();
         List<Author> existingAuthors = authorRepository.findAll();
         List<Category> foundCats = categoryRepository.findAll();
         if (!foundCats.isEmpty()) {
@@ -102,13 +100,13 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
         try {
             Dta data = readJson();
 
-            List<BookCost> bookCosts = new ArrayList<>();
+            List<BookPricing> bookPricings = new ArrayList<>();
             for (int i = 0; i < data.items.size(); i++) {
                 Book book = new Book();
                 BookJSON bookJSON = data.items.get(i);
-                BookCost bookCost = new BookCost();
+                BookPricing bookPricing = new BookPricing();
                 ObjectId bookId = ObjectId.get();
-                book.setId(bookId.toString());
+                book.setId(bookId);
 
 //              ADD CATEGORIES
                 createCategoriesIfNotExist(bookJSON.volumeInfo.categories, book);
@@ -119,7 +117,7 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                 if(bookJSON.saleInfo.listPrice != null) {
                     cost.setAmount(bookJSON.saleInfo.listPrice.amount);
                     cost.setCurrency(bookJSON.saleInfo.listPrice.currencyCode);
-                    bookCost.setOriginalCost(cost);
+                    bookPricing.setOriginalCost(cost);
                     if(i % 2 == 0) {
                         Random r = new Random();
                         double randomValue = r.nextDouble();
@@ -132,36 +130,37 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                         dt = c.getTime();
 
 
-                        bookCost.setWeekDeal(true);
-                        bookCost.changeCost(cost, dt, randomValue);
+                        bookPricing.setWeekDeal(true);
+                        bookPricing.changeCost(cost, dt, randomValue);
                     } else {
-                        bookCost.setWeekDeal(false);
-                        bookCost.changeCost(cost, null, 0);
+                        bookPricing.setWeekDeal(false);
+                        bookPricing.changeCost(cost, null, 0);
                     }
                 } else {
                     cost.setAmount(0);
                     cost.setCurrency("VND");
-                    bookCost.changeCost(cost, null, 0);
+                    bookPricing.changeCost(cost, null, 0);
                 }
                 if(bookJSON.volumeInfo.imageLinks != null) {
                     book.setImageUrl(bookJSON.volumeInfo.imageLinks.thumbnail);
                 }
                 Random r = new Random();
                 double randomValue = 3.0 + (5.0 - 3.0) * r.nextDouble();
+                book.setTitle(bookJSON.volumeInfo.title);
                 book.setFeatured(isFeatured);
                 book.setPublisher(bookJSON.volumeInfo.publisher);
                 book.setPublishedDate(bookJSON.volumeInfo.publishedDate);
                 book.setDescription(bookJSON.volumeInfo.description);
 
                 book.setRating(randomValue);
-                book.setCost(bookCost);
+                book.setBookPricing(bookPricing);
                 books.add(book);
                 isFeatured = !isFeatured;
 
-                bookCosts.add(bookCost);
+                bookPricings.add(bookPricing);
             }
 
-            bookCostRepository.saveAll(bookCosts);
+            bookCostRepository.saveAll(bookPricings);
             bookRepository.saveAll(books);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

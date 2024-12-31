@@ -47,10 +47,13 @@ public class CatalogController {
     }
 
     @GetMapping("/week-deals")
-    public ResponseEntity<IResponse> findWeekDeals() {
-        FindIsFeaturedBooksQuery query = new FindIsFeaturedBooksQuery(6);
+    public ResponseEntity<IResponse> findWeekDeals(FindWeekDealsQuery query) {
         return dispatchableHandler.dispatch(query);
     }
 
+    @GetMapping("/readers-pick-books")
+    public ResponseEntity<IResponse> findReadersPickBooks(FindByReadersPickQuery query) {
+        return dispatchableHandler.dispatch(query);
+    }
 
 }

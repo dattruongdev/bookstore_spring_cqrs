@@ -1,15 +1,18 @@
 package com.dattruongdev.bookstore_cqrs.core.catalog.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.Date;
 
 @Data
-public class BookCost {
+public class BookPricing {
     @Id
-    private String id;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private ObjectId id;
     private Cost cost;
     private Cost originalCost;
     private double discount;
