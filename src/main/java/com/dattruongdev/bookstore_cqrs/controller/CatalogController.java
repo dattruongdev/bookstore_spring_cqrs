@@ -81,4 +81,15 @@ public class CatalogController {
         FindAuthorsQuery query = new FindAuthorsQuery(page, size);
         return dispatchableHandler.dispatch(query);
     }
+    @PostMapping("/books-by-filter")
+    public ResponseEntity<IResponse> findByFilter(@RequestBody FindBooksByFilterQuery query) {
+        return dispatchableHandler.dispatch(query);
+    }
+    @GetMapping("/books/search")
+    public ResponseEntity<IResponse> findByKeywords(@RequestParam(required = false) String title,
+                                                    @RequestParam(required = false) String author,
+                                                    @RequestParam(required = false) String year) {
+        FindBySearchKeywordsQuery query = new FindBySearchKeywordsQuery(title, author, year);
+        return dispatchableHandler.dispatch(query);
+    }
 }
