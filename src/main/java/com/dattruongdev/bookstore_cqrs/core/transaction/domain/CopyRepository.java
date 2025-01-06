@@ -1,4 +1,4 @@
-package com.dattruongdev.bookstore_cqrs.core.lending.domain;
+package com.dattruongdev.bookstore_cqrs.core.transaction.domain;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

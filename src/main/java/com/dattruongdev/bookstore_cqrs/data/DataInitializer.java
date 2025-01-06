@@ -32,11 +32,11 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final BookCostRepository bookCostRepository;
+    private final ReviewRepository reviewRepository;
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
         createRoleIfNotExist();
-        createAdminIfNotExist();
         createBooksIfNotExist();
     }
 
@@ -54,7 +54,14 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
     }
 
     private void createAuthorsIfNotExists(List<String> auths, Book book) {
-        List<Author> authors = auths.stream().map(author -> {
+        Set<String> currentAuthors = new HashSet<>(auths);
+        List<Author> authrs = authorRepository.findByFullNameIn(currentAuthors.stream().toList());
+        if (!authrs.isEmpty()) {
+            book.setAuthors(authrs);
+            return;
+        }
+
+        List<Author> authors = currentAuthors.stream().map(author -> {
             Author a = new Author();
             a.setFullName(author);
             return a;
@@ -64,7 +71,14 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
     }
 
     private void createCategoriesIfNotExist(List<String> categories, Book book) {
-        Set<String> catSet = new HashSet<>(categories);
+
+        Set<String> catSet = new HashSet<>();
+        categories.forEach(cat -> {
+            Category category = categoryRepository.findByName(cat);
+            if (category == null) {
+                catSet.add(cat);
+            }
+        });
 
         List<Category> newCats = catSet.stream().map(cat -> {
             Category category = new Category();
@@ -72,11 +86,85 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
             return category;
         }).toList();
 
-        book.setCategories(categoryRepository.saveAll(newCats));
+        List<Category> cats = categoryRepository.saveAll(newCats);
+
+        if (!cats.isEmpty()) {
+            book.setCategories(cats);
+        } else {
+            List<Category> originalCats = categoryRepository.findAllByNameIn(categories);
+            book.setCategories(originalCats);
+        }
+    }
+
+    private void createUsersIfNotExist() {
+        Role role = roleRepository.findByRoleName("ROLE_USER");
+        List<User> users = new ArrayList<>();
+
+        if (role == null) {
+            role = new Role();
+            role.setRoleName("ROLE_USER");
+            role = roleRepository.save(role);
+        }
+
+        for(int i = 0; i < 10; i++) {
+            User user = new User();
+            user.setUsername("user" + i);
+            user.setPassword(passwordEncoder.encode("user" + i));
+            user.setRoles(List.of(role));
+            user.setEmail("user" + i + "@gmail.com");
+            user.setFirstName("User");
+            user.setLastName(i + "");
+
+            users.add(user);
+        }
+
+        userRepository.saveAll(users);
+    }
+
+    private void createReviewsIfNotExist(Book book) {
+        List<User> users = userRepository.findAll();
+
+        List<Review> reviews = new ArrayList<>();
+
+        double sum = 0;
+
+        for (User usr : users) {
+            Review review = new Review();
+            review.setBookId(book.getId());
+            review.setContent(String.join(" ", generateRandomWords(20)));
+            review.setEmail(usr.getEmail());
+            review.setUsername(usr.getFirstName() + " " + usr.getLastName());
+            review.setRating((new Random()).nextInt(5 - 4 + 1) + 4);
+            review.setCreatedAt(new Date());
+            review.setUpdatedAt(new Date());
+            reviews.add(review);
+            sum += review.getRating() / (double) users.size();
+        }
+
+        book.setRating(sum);
+
+        reviewRepository.saveAll(reviews);
+    }
+
+    private String[] generateRandomWords(int numberOfWords)
+    {
+        String[] randomStrings = new String[numberOfWords];
+        Random random = new Random();
+        for(int i = 0; i < numberOfWords; i++)
+        {
+            char[] word = new char[random.nextInt(8)+3]; // words of length 3 through 10. (1 and 2 letter words are boring.)
+            for(int j = 0; j < word.length; j++)
+            {
+                word[j] = (char)('a' + random.nextInt(26));
+            }
+            randomStrings[i] = new String(word);
+        }
+        return randomStrings;
     }
 
     @Transactional
     protected void createBooksIfNotExist() {
+
         boolean isFeatured = false;
         List<Book> current = bookRepository.findAll();
         List<BookPricing> currentCost = bookCostRepository.findAll();
@@ -96,6 +184,16 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
         if (!current.isEmpty()) {
             bookRepository.deleteAll();
         }
+//        delete all reviews
+        reviewRepository.deleteAll();
+
+        //        delete all users
+        userRepository.deleteAll();
+
+        // createUser and admin
+        createAdminIfNotExist();
+        createUsersIfNotExist();
+
         List<Book> books = new ArrayList<>();
         try {
             Dta data = readJson();
@@ -145,14 +243,12 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                     book.setImageUrl(bookJSON.volumeInfo.imageLinks.thumbnail);
                 }
                 Random r = new Random();
-                double randomValue = 3.0 + (5.0 - 3.0) * r.nextDouble();
                 book.setTitle(bookJSON.volumeInfo.title);
                 book.setFeatured(isFeatured);
                 book.setPublisher(bookJSON.volumeInfo.publisher);
                 book.setPublishedDate(bookJSON.volumeInfo.publishedDate);
                 book.setDescription(bookJSON.volumeInfo.description);
 
-                book.setRating(randomValue);
                 book.setBookPricing(bookPricing);
                 books.add(book);
                 isFeatured = !isFeatured;
@@ -161,7 +257,14 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
             }
 
             bookCostRepository.saveAll(bookPricings);
+            books = bookRepository.saveAll(books);
+
+            for (Book book : books) {
+                createReviewsIfNotExist(book);
+            }
+
             bookRepository.saveAll(books);
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (ParseException e) {
@@ -185,6 +288,9 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
             user = new User();
             user.setUsername("admin");
             user.setPassword(passwordEncoder.encode("admin"));
+            user.setFirstName("Admin");
+            user.setLastName("Admin");
+            user.setEmail("admin@gmail.com");
             user.setRoles(List.of(role));
             userRepository.save(user);
         }

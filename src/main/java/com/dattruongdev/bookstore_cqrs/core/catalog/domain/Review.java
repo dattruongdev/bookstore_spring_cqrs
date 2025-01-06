@@ -6,14 +6,22 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Date;
 
 @Data
-public class Category {
+@Document
+public class Review {
     @Id
     @JsonSerialize(using = ToStringSerializer.class)
     @JsonProperty("id")
     private ObjectId id;
-    @Indexed(unique = true)
-    private String name;
+    private ObjectId bookId;
+    private String username;
+    private String email;
+    private String content;
+    private double rating;
+    private Date createdAt;
+    private Date updatedAt;
 }

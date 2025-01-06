@@ -1,5 +1,6 @@
 package com.dattruongdev.bookstore_cqrs.core.catalog.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.List;
 public class Book {
     @Id
     @JsonSerialize(using = ToStringSerializer.class)
+    @JsonProperty("id")
     private ObjectId id;
     private String title;
     @Transient

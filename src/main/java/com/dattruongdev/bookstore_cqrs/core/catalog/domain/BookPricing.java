@@ -1,5 +1,6 @@
 package com.dattruongdev.bookstore_cqrs.core.catalog.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.Date;
 public class BookPricing {
     @Id
     @JsonSerialize(using = ToStringSerializer.class)
+    @JsonProperty("id")
     private ObjectId id;
     private Cost cost;
     private Cost originalCost;
@@ -19,26 +21,16 @@ public class BookPricing {
     private Date beginDate;
     private Date endDate;
     private boolean isWeekDeal;
-//    @DocumentReference
-//    private Book book;
 
     public void changeCost(Cost cost, Date endDate, double discount) {
         this.beginDate = new Date();
             this.endDate = endDate;
-            cost.setAmount(cost.getAmount() * (1 - discount));
-            this.cost = cost;
+            this.originalCost = cost;
+
+            Cost newCost = new Cost();
+            newCost.setAmount(cost.getAmount() * (1 - discount));
+            newCost.setCurrency(cost.getCurrency());
+            this.cost = newCost;
             this.discount = discount;
     }
-//    public static BookCost createBookCost(Cost cost, Date endDate, double discount, boolean isWeekDeal) {
-//        BookCost bookCost = new BookCost();
-////        bookCost.book = book;
-//        bookCost.cost = cost;
-//        bookCost.originalCost = cost;
-//        bookCost.discount = discount;
-//        bookCost.beginDate = new Date();
-//        bookCost.endDate = endDate;
-//        bookCost.isWeekDeal = isWeekDeal;
-//
-//        return bookCost;
-//    }
 }

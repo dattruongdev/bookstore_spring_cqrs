@@ -2,8 +2,6 @@ package com.dattruongdev.bookstore_cqrs.core.catalog.query;
 
 import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Book;
 import com.dattruongdev.bookstore_cqrs.core.catalog.domain.BookRepository;
-import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Cost;
-import com.dattruongdev.bookstore_cqrs.core.lending.query.FindCopyAvailableQuery;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.HandledBy;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.Query;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.QueryHandler;
@@ -11,12 +9,6 @@ import com.dattruongdev.bookstore_cqrs.response.ApiResponse;
 import com.dattruongdev.bookstore_cqrs.response.ErrorResponse;
 import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.LookupOperation;
-import org.springframework.data.mongodb.core.aggregation.UnwindOperation;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

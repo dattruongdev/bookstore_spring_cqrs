@@ -1,9 +1,8 @@
-package com.dattruongdev.bookstore_cqrs.core.lending.domain;
+package com.dattruongdev.bookstore_cqrs.core.transaction.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-import java.io.Serializable;
 import java.util.Date;
 
 @Data

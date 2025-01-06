@@ -1,29 +1,21 @@
 package com.dattruongdev.bookstore_cqrs.core.catalog.query;
 
-import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Author;
 import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Book;
-import com.dattruongdev.bookstore_cqrs.core.catalog.domain.BookPricing;
 import com.dattruongdev.bookstore_cqrs.core.catalog.domain.BookRepository;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.HandledBy;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.Query;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.QueryHandler;
 import com.dattruongdev.bookstore_cqrs.response.ApiResponse;
 import com.dattruongdev.bookstore_cqrs.response.IResponse;
-import com.mongodb.client.model.UnwindOptions;
 import lombok.RequiredArgsConstructor;
-import org.bson.Document;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.*;
-//import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @HandledBy(handler = FindWeekDealsQueryHandler.class)
 public record FindWeekDealsQuery() implements Query<ResponseEntity<IResponse>> {

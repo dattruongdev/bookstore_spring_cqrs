@@ -22,6 +22,7 @@ public interface BookRepository extends MongoRepository<Book, ObjectId> {
     @Query(value = "{'rating': {'$gte':  4.0, '$lte':  5.0}}")
     Page<Book> findByOrderByRatingDesc(PageRequest pageable);
 
-    @Aggregation(pipeline = { "{ '$lookup': { 'from': 'bookPricing', 'localField': 'bookPricing', 'foreignField': '_id', 'as': 'bookPricing' } }", "{ '$unwind': '$bookPricing' }", "{ '$match': { 'bookPricing.isWeekDeal': true } }" })
-    List<Book> findByBookPricingIsWeekDealTrue();
+    @Query(value ="{'categories':  {'$in': ?0}, '_id': {'$ne': ?1}}")
+    Page<Book> findBySameCategoriesNotBookIdInPage(List<ObjectId> categories, String bookId, Pageable pageable);
+
 }

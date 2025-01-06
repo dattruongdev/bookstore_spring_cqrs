@@ -1,9 +1,9 @@
 package com.dattruongdev.bookstore_cqrs.controller;
 
-import com.dattruongdev.bookstore_cqrs.core.lending.query.FindBorrowByCopyIdQuery;
-import com.dattruongdev.bookstore_cqrs.core.lending.query.FindBorrowByUserIdQuery;
-import com.dattruongdev.bookstore_cqrs.core.lending.query.FindCopyAvailableQuery;
-import com.dattruongdev.bookstore_cqrs.core.lending.query.FindCopyByIsbnQuery;
+import com.dattruongdev.bookstore_cqrs.core.transaction.query.FindBorrowByCopyIdQuery;
+import com.dattruongdev.bookstore_cqrs.core.transaction.query.FindBorrowByUserIdQuery;
+import com.dattruongdev.bookstore_cqrs.core.transaction.query.FindCopyAvailableQuery;
+import com.dattruongdev.bookstore_cqrs.core.transaction.query.FindCopyByIsbnQuery;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.DispatchableHandler;
 import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;

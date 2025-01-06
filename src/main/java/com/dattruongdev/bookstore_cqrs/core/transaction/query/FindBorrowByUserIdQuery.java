@@ -1,7 +1,7 @@
-package com.dattruongdev.bookstore_cqrs.core.lending.query;
+package com.dattruongdev.bookstore_cqrs.core.transaction.query;
 
-import com.dattruongdev.bookstore_cqrs.core.lending.domain.Borrow;
-import com.dattruongdev.bookstore_cqrs.core.lending.domain.BorrowRepository;
+import com.dattruongdev.bookstore_cqrs.core.transaction.domain.Borrow;
+import com.dattruongdev.bookstore_cqrs.core.transaction.domain.BorrowRepository;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.Query;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.QueryHandler;
 import com.dattruongdev.bookstore_cqrs.response.ApiResponse;

@@ -1,7 +1,7 @@
-package com.dattruongdev.bookstore_cqrs.core.lending.query;
+package com.dattruongdev.bookstore_cqrs.core.transaction.query;
 
-import com.dattruongdev.bookstore_cqrs.core.lending.domain.Copy;
-import com.dattruongdev.bookstore_cqrs.core.lending.domain.CopyRepository;
+import com.dattruongdev.bookstore_cqrs.core.transaction.domain.Copy;
+import com.dattruongdev.bookstore_cqrs.core.transaction.domain.CopyRepository;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.HandledBy;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.Query;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.QueryHandler;
@@ -15,24 +15,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-@HandledBy(handler = FindCopyAvailableQueryHandler.class)
-public record FindCopyAvailableQuery(boolean isAvailable) implements Query<ResponseEntity<IResponse>> {
+@HandledBy(handler = FindByIsbnQueryHandler.class)
+public record FindCopyByIsbnQuery(String Isbn) implements Query<ResponseEntity<IResponse>> {
 }
 
 @Service
 @RequiredArgsConstructor
-class FindCopyAvailableQueryHandler implements QueryHandler<FindCopyAvailableQuery, ResponseEntity<IResponse>> {
+class FindByIsbnQueryHandler implements QueryHandler<FindCopyByIsbnQuery, ResponseEntity<IResponse>> {
     private final CopyRepository copyRepository;
+    @Override
+    public ResponseEntity<IResponse> handle(FindCopyByIsbnQuery command) {
+        List<Copy> copies = copyRepository.findByIsbn(command.Isbn());
 
-    public ResponseEntity<IResponse> handle(FindCopyAvailableQuery query) {
-        List<Copy> copies = copyRepository.findByAvailable(query.isAvailable());
         if (copies.isEmpty()) {
-            return ResponseEntity.status(404).body(new ErrorResponse(404, "No available copy found"));
+            return ResponseEntity.status(404).body(new ErrorResponse(404, "No copies found"));
         }
 
         return ResponseEntity.ok().body(new ApiResponse(Map.of(
             "statusCode", 200,
-            "message", "Available copies found",
+            "message", "Copies found",
             "data", copies
         )));
     }
