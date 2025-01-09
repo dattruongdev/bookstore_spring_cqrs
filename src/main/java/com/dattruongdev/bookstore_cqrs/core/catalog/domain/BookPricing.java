@@ -21,6 +21,7 @@ public class BookPricing {
     private Date beginDate;
     private Date endDate;
     private boolean isWeekDeal;
+    private Book book;
 
     public void changeCost(Cost cost, Date endDate, double discount) {
         this.beginDate = new Date();

@@ -9,6 +9,7 @@ import com.dattruongdev.bookstore_cqrs.response.ApiResponse;
 import com.dattruongdev.bookstore_cqrs.response.ErrorResponse;
 import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ class FindAllBooksQueryHandler implements QueryHandler<FindAllBooksQuery, Respon
 
     @Override
     public ResponseEntity<IResponse> handle(FindAllBooksQuery dispatchable) {
-        List<Book> books = bookRepository.findAll();
+        List<Book> books = bookRepository.findBooksAvailable(0, 12);
 
 //        books.forEach(book -> {
 //            book.setCost(book.getBookCost().getCost());

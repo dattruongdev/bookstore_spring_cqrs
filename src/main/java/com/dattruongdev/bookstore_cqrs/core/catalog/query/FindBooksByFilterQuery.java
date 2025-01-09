@@ -30,38 +30,22 @@ public record FindBooksByFilterQuery(List<String> categoryIds, List<String> auth
 @RequiredArgsConstructor
 class FindBooksByFilterQueryHandler implements QueryHandler<FindBooksByFilterQuery, ResponseEntity<IResponse>> {
     private final MongoTemplate mongoTemplate;
+    private final BookRepository bookRepository;
 
     @Override
     public ResponseEntity<IResponse> handle(FindBooksByFilterQuery query) {
-        Aggregation aggregation = Aggregation.newAggregation(
-
-                Aggregation.lookup("bookPricing", "bookPricing", "_id", "bookPricing"),
-                Aggregation.unwind("bookPricing"),
-                Aggregation.lookup("category", "categories", "_id", "categories"),
-                Aggregation.lookup("author", "authors", "_id", "authors"),
-                Aggregation.match((new Criteria().orOperator(
-                        Criteria.where("authors._id").in(query.authorIds().stream().map(ObjectId::new).toList()),
-                        Criteria.where("categories._id").in(query.categoryIds().stream().map(ObjectId::new).toList())
-                )))
-////                // in price range
-//                Aggregation.match(Criteria.where("bookPricing.cost.amount").gte(query.priceRange().get(0)).lte(query.priceRange().get(1)))
-//                Aggregation.match(Criteria.where("rating").lte(query.rating()))
-        );
-
-         AggregationResults<Book> results = mongoTemplate.aggregate(aggregation, "book", Book.class);
-
-         if (results.getMappedResults().isEmpty()) {
-             return ResponseEntity.status(404).body(new ErrorResponse(404, "No books found"));
-         }
-
-         var docs =  results.getRawResults().get("results", ArrayList.class);
+        List<Book> books = bookRepository.findByFilter(
+                query.categoryIds().stream().map(ObjectId::new).toList(),
+                query.authorIds().stream().map(ObjectId::new).toList(),
+                query.priceRange().get(0), query.priceRange().get(1),
+                query.rating());
 
             return ResponseEntity.ok().body(new ApiResponse(Map.of(
                     "status", 200,
                     "message", "Books found",
-                    "data", docs,
-                    "totalBooks", docs.size(),
-                    "count", docs.size()
+                    "data", books,
+                    "totalBooks", books.size(),
+                    "count", books.size()
             )));
     }
 }

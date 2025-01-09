@@ -1,7 +1,7 @@
 package com.dattruongdev.bookstore_cqrs.core.transaction.query;
 
-import com.dattruongdev.bookstore_cqrs.core.transaction.domain.Copy;
-import com.dattruongdev.bookstore_cqrs.core.transaction.domain.CopyRepository;
+import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Copy;
+import com.dattruongdev.bookstore_cqrs.core.catalog.domain.CopyRepository;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.HandledBy;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.Query;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.query.QueryHandler;

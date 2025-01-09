@@ -9,6 +9,7 @@ import com.dattruongdev.bookstore_cqrs.response.ApiResponse;
 import com.dattruongdev.bookstore_cqrs.response.ErrorResponse;
 import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;
+import org.bson.Document;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -31,8 +32,6 @@ class FindNewReleaseQueryHandler implements QueryHandler<FindNewReleaseQuery, Re
 
     @Override
     public ResponseEntity<IResponse> handle(FindNewReleaseQuery query) {
-
-
         List<Book> books = bookRepository.findByOrderByPublishedDateDesc(PageRequest.of(0, 6)).toList();
 
         if (books.isEmpty()) {

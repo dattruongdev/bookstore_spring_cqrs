@@ -28,7 +28,7 @@ class FindIsFeaturedBooksQueryHandler implements QueryHandler<FindIsFeaturedBook
 
     @Override
     public ResponseEntity<IResponse> handle(FindIsFeaturedBooksQuery query) {
-        List<Book> books  = bookRepository.findIsFeaturedBooks(PageRequest.of(0, query.size())).stream().toList();
+        List<Book> books  = bookRepository.findIsFeaturedBooks(0, query.size());
 
         if (books.isEmpty()) {
             return ResponseEntity.status(404).body(new ErrorResponse(404, "No books found"));

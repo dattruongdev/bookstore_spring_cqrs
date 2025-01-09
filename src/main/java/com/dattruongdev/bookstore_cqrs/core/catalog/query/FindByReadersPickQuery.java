@@ -29,7 +29,7 @@ class FindByReadersPickQueryHandler implements QueryHandler<FindByReadersPickQue
 
     @Override
     public ResponseEntity<IResponse> handle(FindByReadersPickQuery query) {
-        List<Book> books = bookRepository.findByOrderByRatingDesc(PageRequest.of(0, 6, Sort.by(Sort.Direction.DESC, "rating"))).toList();
+        List<Book> books = bookRepository.findByOrderByRatingDesc(0,6);
 
         if (books.isEmpty()) {
             return ResponseEntity.status(404).body(new ErrorResponse(404, "Books not found"));

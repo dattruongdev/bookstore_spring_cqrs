@@ -1,14 +1,15 @@
 package com.dattruongdev.bookstore_cqrs.core.catalog.command;
 
 import com.dattruongdev.bookstore_cqrs.core.catalog.domain.*;
-import com.dattruongdev.bookstore_cqrs.core.transaction.domain.Copy;
-import com.dattruongdev.bookstore_cqrs.core.transaction.domain.CopyRepository;
+import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Copy;
+import com.dattruongdev.bookstore_cqrs.core.catalog.domain.CopyRepository;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.HandledBy;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.command.Command;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.command.CommandHandler;
 import com.dattruongdev.bookstore_cqrs.response.ApiResponse;
 import com.dattruongdev.bookstore_cqrs.response.IResponse;
 import lombok.RequiredArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,7 @@ class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEn
             return a;
         }).toList();
         book.setAuthors(authors);
-        book.setBookPricing(bookPricing);
+        book.setBookPricing(ObjectId.get());
 
         book.setPublisher(command.publisher());
         book.setTitle(command.title());
@@ -67,7 +68,6 @@ class AddBookCommandHandler implements CommandHandler<AddBookCommand, ResponseEn
         for (int i = 0; i < 3; i++) {
             Copy copy = new Copy();
             copy.setAvailable(true);
-            copy.setIsbn(book.getId().toString());
             copyRepository.save(copy);
         }
 

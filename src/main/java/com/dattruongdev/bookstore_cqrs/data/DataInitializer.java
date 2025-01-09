@@ -5,6 +5,7 @@ import com.dattruongdev.bookstore_cqrs.core.auth.domain.RoleRepository;
 import com.dattruongdev.bookstore_cqrs.core.auth.domain.User;
 import com.dattruongdev.bookstore_cqrs.core.auth.domain.UserRepository;
 import com.dattruongdev.bookstore_cqrs.core.catalog.domain.*;
+import com.dattruongdev.bookstore_cqrs.core.transaction.domain.BookSaleRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -33,6 +35,8 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
     private final AuthorRepository authorRepository;
     private final BookCostRepository bookCostRepository;
     private final ReviewRepository reviewRepository;
+    private final CopyRepository copyRepository;
+    private final BookSaleRepository bookSaleRepository;
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
@@ -134,7 +138,7 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
             review.setContent(String.join(" ", generateRandomWords(20)));
             review.setEmail(usr.getEmail());
             review.setUsername(usr.getFirstName() + " " + usr.getLastName());
-            review.setRating((new Random()).nextInt(5 - 4 + 1) + 4);
+            review.setRating((new Random()).nextInt(5 - 3 + 1) + 3);
             review.setCreatedAt(new Date());
             review.setUpdatedAt(new Date());
             reviews.add(review);
@@ -190,11 +194,17 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
         //        delete all users
         userRepository.deleteAll();
 
+        // delete all copies
+        copyRepository.deleteAll();
+        //delete booksale
+        bookSaleRepository.deleteAll();
+
         // createUser and admin
         createAdminIfNotExist();
         createUsersIfNotExist();
 
         List<Book> books = new ArrayList<>();
+        List<Copy> copies = new ArrayList<>();
         try {
             Dta data = readJson();
 
@@ -205,6 +215,10 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                 BookPricing bookPricing = new BookPricing();
                 ObjectId bookId = ObjectId.get();
                 book.setId(bookId);
+                book.setNumberOfPages(bookJSON.volumeInfo.pageCount);
+                Integer noCopies = copyRepository.findCountCopiesAvailableByBookId(book.getId());
+                int numOfCopies = noCopies == null ? 0 : noCopies;
+                book.setNumberOfCopies(numOfCopies);
 
 //              ADD CATEGORIES
                 createCategoriesIfNotExist(bookJSON.volumeInfo.categories, book);
@@ -249,13 +263,29 @@ public class DataInitializer implements ApplicationListener<ApplicationStartedEv
                 book.setPublishedDate(bookJSON.volumeInfo.publishedDate);
                 book.setDescription(bookJSON.volumeInfo.description);
 
-                book.setBookPricing(bookPricing);
+                ObjectId bookPricingId = ObjectId.get();
+                bookPricing.setId(bookPricingId);
+
+                book.setBookPricing(bookPricingId);
+
+                for(int j = 0; j < 3; j++) {
+                    Copy copy = new Copy();
+                    copy.setId(ObjectId.get());
+                    copy.setCreatedAt(LocalDateTime.now().toString());
+                    copy.setUpdatedAt(LocalDateTime.now().toString());
+                    copy.setBookId(bookId);
+                    copy.setAvailable(true);
+                    copies.add(copy);
+                    book.addCopy(copy.getId());
+                }
+
                 books.add(book);
                 isFeatured = !isFeatured;
 
                 bookPricings.add(bookPricing);
             }
 
+            copyRepository.saveAll(copies);
             bookCostRepository.saveAll(bookPricings);
             books = bookRepository.saveAll(books);
 
@@ -346,6 +376,7 @@ class VolumeInfo {
     public String publisher;
     public String publishedDate;
     public String description;
+    public int pageCount;
     public ImageLink imageLinks;
 }
 

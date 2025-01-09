@@ -29,7 +29,7 @@ class FindBooksInPageQueryHandler implements QueryHandler<FindBooksInPageQuery, 
     private final BookRepository bookRepository;
     @Override
     public ResponseEntity<IResponse> handle(FindBooksInPageQuery query) {
-        List<Book> books = bookRepository.findAll(PageRequest.of(query.page() - 1, 12)).stream().toList();
+        List<Book> books = bookRepository.findBooksAvailable(query.page() - 1, 12).stream().toList();
 
         if (books.isEmpty()) {
             return ResponseEntity.status(404).body(new ErrorResponse(404, "No books found"));

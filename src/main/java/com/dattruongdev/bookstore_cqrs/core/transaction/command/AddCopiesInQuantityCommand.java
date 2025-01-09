@@ -1,7 +1,7 @@
 package com.dattruongdev.bookstore_cqrs.core.transaction.command;
 
-import com.dattruongdev.bookstore_cqrs.core.transaction.domain.Copy;
-import com.dattruongdev.bookstore_cqrs.core.transaction.domain.CopyRepository;
+import com.dattruongdev.bookstore_cqrs.core.catalog.domain.Copy;
+import com.dattruongdev.bookstore_cqrs.core.catalog.domain.CopyRepository;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.HandledBy;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.command.Command;
 import com.dattruongdev.bookstore_cqrs.cqrs.abstraction.command.CommandHandler;
@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,9 +29,8 @@ class AddCopiesInQuantityCommandHandler implements CommandHandler<AddCopiesInQua
         List<Copy> copies = new ArrayList<>();
         for (int i = 0; i < command.quantity(); i++) {
             Copy copy = new Copy();
-            copy.setIsbn(command.Isbn());
-            copy.setCreatedAt(new Date());
-            copy.setUpdatedAt(new Date());
+            copy.setCreatedAt(LocalDateTime.now().toString());
+            copy.setUpdatedAt(LocalDateTime.now().toString());
 
             copies.add(copy);
         }
